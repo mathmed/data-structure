@@ -28,22 +28,51 @@ void balancear(Tree* n, Tree** RaizOriginal);
 void re(Tree* x);
 void rd(Tree* x);
 int buscar(Tree* raiz, int n);
+double tvtosec(struct timeval t);
+void tremove(Tree* x);
 
 
 /* função prncipal */
 int main (void) {
+    Tree* raiz = NULL;
     srand(time(NULL));
-    Tree *raiz = NULL;
-    int i, aleatorio;
-    
-    for(i = 0; i < 10000; i++){
-        aleatorio = (rand() % (i+1)) + 1;
-        if(buscar(raiz, aleatorio) == 0 ){
-           adicionar(&raiz, aleatorio,  NULL, &raiz);
-        }
-    }      
+	struct timeval a;
+	struct timeval b;
+	double tempo;
+    int achou;
+    int n, k, i;
 
-    tprint(raiz);
+
+    /* CONTROLA O TAMANHO */
+
+ 	for(n = 10000; n <= 100000; n += 10000){      
+        for(k = 0; k < n; k++){
+            adicionar(&raiz, k+1, NULL, &raiz ); /* pior caso */
+            /* adicionar(&raiz, rand() % (k+1)); /* caso médio */
+        }
+        
+ 		tempo = 0;
+
+        /* CALCULA A MEDIA */
+ 		for(i = 0; i < 5000 ; i++){
+
+		 	gettimeofday(&b, NULL);
+
+            achou = buscar(raiz, k+2); /* pior caso */
+            /* achou = buscar(raiz, rand() % (k+1)); /* caso  médio*/
+		 	gettimeofday(&a, NULL);
+		 	tempo  += tvtosec(a) - tvtosec(b);
+	 	}
+
+        tremove(raiz);
+        raiz = NULL;
+
+        /* PRINTA O RESULTADO */
+
+	 	fprintf(stderr, "%d %.20lf\n", n, tempo/5000 );
+	 	printf("%d %.20lf\n", n, tempo/5000 );
+
+	}
 }
 
 
@@ -72,7 +101,6 @@ void adicionar(Tree **raiz, int v, Tree* pai, Tree** raizOriginal){
         adicionar(&((*raiz)-> r),n->v,*raiz,raizOriginal);
     }
 } 
-
 
 /* função para criar um nó */
 
@@ -257,9 +285,6 @@ void rd(Tree* x){
 }
 
 
-
-
-
 /* função para procurar um elemento na arvore */
 int buscar(Tree* raiz,int n){
 
@@ -276,4 +301,23 @@ int buscar(Tree* raiz,int n){
         return buscar((raiz->r),n);
     
     return 0;
+}
+
+/* função para converter o tempo */
+double tvtosec(struct timeval t){
+  return (double) t.tv_sec + t.tv_usec/(double)1e6;
+
+}
+
+
+/* função para liberar arvore */
+void tremove(Tree* x){
+
+    if(x != NULL){
+        tremove(x->l);
+        tremove(x->r);
+        free(x);
+    }
+
+    return;
 }
