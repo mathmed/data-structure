@@ -40,39 +40,36 @@ int main (void) {
 	struct timeval b;
 	double tempo;
     int achou;
-    int n, k, i;
+    int n, k, i, aleatorio;
 
 
-    /* CONTROLA O TAMANHO */
 
- 	for(n = 10000; n <= 100000; n += 10000){      
-        for(k = 0; k < n; k++){
-            adicionar(&raiz, k+1, NULL, &raiz ); /* pior caso */
-            /* adicionar(&raiz, rand() % (k+1)); /* caso médio */
+    /* teste com números aleatórios */
+
+    for(i = 1; i <= 15; i++){
+        aleatorio = rand() % 30;
+        if(buscar(raiz, aleatorio) != 1){
+            printf("\n - adicionando %d - \n", aleatorio);
+            adicionar(&raiz, aleatorio, NULL, &raiz);
         }
-        
- 		tempo = 0;
+    }
 
-        /* CALCULA A MEDIA */
- 		for(i = 0; i < 5000 ; i++){
+    tprint(raiz);
 
-		 	gettimeofday(&b, NULL);
 
-            achou = buscar(raiz, k+2); /* pior caso */
-            /* achou = buscar(raiz, rand() % (k+1)); /* caso  médio*/
-		 	gettimeofday(&a, NULL);
-		 	tempo  += tvtosec(a) - tvtosec(b);
-	 	}
 
-        tremove(raiz);
-        raiz = NULL;
+    /* teste de casos base 
 
-        /* PRINTA O RESULTADO */
+    adicionar(&raiz, 30, NULL, &raiz);
 
-	 	fprintf(stderr, "%d %.20lf\n", n, tempo/5000 );
-	 	printf("%d %.20lf\n", n, tempo/5000 );
+    adicionar(&raiz,20, NULL, &raiz);
 
-	}
+    adicionar(&raiz, 25, NULL, &raiz); 
+
+    tprint(raiz);
+    
+    */
+    
 }
 
 
@@ -89,7 +86,8 @@ void adicionar(Tree **raiz, int v, Tree* pai, Tree** raizOriginal){
         /* a raiz recebe o nó */
         *raiz = n;
         /* e por último verifica se  existe algum desbalanceamento */
-        verifica(n, raizOriginal);        
+        verifica(n, raizOriginal);   
+             
     }
 
     /* caso em que o número adicinado é maior chama a função recursivamente enviando o lado esquerdo, o numero, o pai e a raiz original */
@@ -111,7 +109,7 @@ Tree* newnode(int num){
     a->l = NULL;
     a->r = NULL;
     a->p = NULL;
-    a->h = 0;
+    a->h = 1;
     return a;
 
 }
@@ -121,7 +119,7 @@ Tree* newnode(int num){
 void tprint( Tree* x){
     if(x != NULL){
         tprint(x->l);
-        printf("Endereço: %p Valor: %d Esquerda: %p Direita: %p Pai: %p \n", x , x->v, x->l, x->r, x->p);
+        printf("Endereço: %p Valor: %d Esquerda: %p Direita: %p Pai: %p  altura: %d\n", x , x->v, x->l, x->r, x->p, x->h);
         tprint(x->r);
     }
 }
@@ -130,14 +128,20 @@ void tprint( Tree* x){
 void verifica(Tree* n, Tree** RaizOriginal){
 
     /* laço que começa no ultimo elemento adicionado e vai até a raiz da arvore */
+   
     while (n != NULL)
     {
-        /* verifica se há desbalanceamento nas alturas, se houver chamar função para balancea */
-        if (mod(alturaArvore(n->r) - alturaArvore(n->l)) > 1) balancear(n,RaizOriginal);
+
+        n->h =(alturaArvore(n));
+        
+        /* verifica se há desbalanceamento nas alturas, se houver chamar função para balancer */
+        if (mod(alturaArvore(n->r) - alturaArvore(n->l)) > 1) {
+            printf("\n!--Entrei no balanceamento--!\n\n");
+            balancear(n,RaizOriginal); 
+        }
 
         /* atribui altura e verifica o pai (proximo) */
-        n->h = alturaArvore(n);
-        n = n->p;
+        n = n->p;   
     }
 }
 
@@ -164,124 +168,139 @@ unsigned int maxAlt(int no1, int no2){
 }
 
 
-/* função que verifica o caso para poder fazer a rotação */
+/* função que verifica o caso para poder fazer a rotação e atualizar as alturas depois */
 
 void balancear(Tree* n, Tree** RaizOriginal){
     /* verificando a diferença */
 	int dp = alturaArvore(n->r) - alturaArvore(n->l);
 	int df;
 	
-    /* casos 1 e 3 */
-    if (dp == 2){
-
-        /* verificando se é caso 1 ou 3 */
-		df = alturaArvore(n->r->r) - alturaArvore(n->r->l);
-
-        /* caso 3 */
-        if (df == -1){
+    if(n->h != dp){
+        /* casos 1 e 3 */
+        if (dp == 2){
             
-            /* faz duas rotações na arvore */
-            re(n);
-            re(n);
-		    if (n == *RaizOriginal)
-                *RaizOriginal = n->p;
 
-        /* caso 1 */
-        } else {
+            /* verificando se é caso 1 ou 3 */
+            df = alturaArvore(n->r->r) - alturaArvore(n->r->l);
 
-            /* faz uma rotação na arvore */
-            re(n);
-			if (n == *RaizOriginal)						    
-                *RaizOriginal = n->p;
-            
-        }
-	}
+            /* caso 3 */
+            if (df == -1){
+                 printf("\n\n!-- Entrei no caso 3 --!\n\n");
+                /* entrou no caso 3 */
 
-    /* casos 2 e 4 */
-    else if (dp == -2) {
+                rd(n->r);
 
-        /* verificando se é caso 2 ou 4 */
-        df = alturaArvore(n->l->r) - alturaArvore(n->l->l);
+                /* atualizando a altura apos a primeira rotação manualmente */
+                int aux = n->r->h;
+                n->r->h = n->r->r->h;
+                n->r->r->h = aux;
 
-        /* caso 2 */
-        if (df <= 0){
-
-            /* faz uma rotação na arvore */
-            rd(n);
+                re(n);
+               
+                
                 if (n == *RaizOriginal)
                     *RaizOriginal = n->p;
+
+                n->h =( alturaArvore(n));
+            
+            /* caso 1 */
+            } else {
+                printf("\n\n!-- Entrei no caso 1 --!\n\n");
+
+                re(n);
+                if (n == *RaizOriginal)						    
+                    *RaizOriginal = n->p;
+
+                n->h =( alturaArvore(n));
                 
+                
+            }
+        }
 
-        /* caso 4 */
-        } else {
+        /* casos 2 e 4 */
+        else if (dp == -2) {
 
-            /* faz duas rotações na arvore */
-            rd(n);
-            rd(n);
-            if (n == *RaizOriginal)
-                *RaizOriginal = n->p;
-	    }
-    }   
+            /* verificando se é caso 2 ou 4 */
+            df = alturaArvore(n->l->r) - alturaArvore(n->l->l);
+
+            /* caso 2 */
+            if (df <= 0){
+                
+                printf("\n\n!-- Entrei no caso 2 --!\n\n");
+
+                rd(n);
+                    if (n == *RaizOriginal)
+                        *RaizOriginal = n->p;
+                
+                n->h =( alturaArvore(n));
+
+            /* caso 4 */
+            } else {
+
+                printf("\n\n!-- Entrei no caso 4 --!\n\n");
+
+                re(n->l);
+                
+                 /* atualizando a altura apos a primeira rotação manualmente */
+                int aux = n->l->h;
+                n->l->h = n->l->l->h;
+                n->l->l->h = aux;
+
+                rd(n);
+               
+                if (n == *RaizOriginal)
+                    *RaizOriginal = n->p;
+
+                n->h =( alturaArvore(n));
+
+                    
+            }
+        }
+    }
 }
 
 
 /* função que faz a rotação na esquerda */
 
 void re(Tree* x){
-    Tree* pai = x->p;
-    Tree* b = x->r;
-    Tree* c = x->r->l;
-    b->p = pai;
-    if(pai != NULL){
-        if(pai->l == x)
-            pai->l=b;
-        
-        else
-            pai->r=b;
-        
+    printf("\n\n!-- Entrei na rotação da esquerda --!\n\n");
+    Tree *y = x->r;
+    Tree *b = y->l;
+
+    if(x->p != NULL){
+        if(x->p->r == x){
+            x->p->r = y;
+        }else{
+            x->p->l = y;
+        }
     }
-    x->r=c;
-    b->l=x;
-    x->p=b;
+    y->p = x->p;
 
-    if(c!=NULL)
-        c->p=x;
-    
-
-    /* atualizando as alturas */
-    x->h = alturaArvore(x);
-    b->h = alturaArvore(b);  		
+    x->p = y;
+    y->l = x;
+    x->r = b;
 }
 
 
 /* função que faz a rotação na direita */
 
 void rd(Tree* x){
-    Tree* pai = x->p;
-    Tree* b = x->l;
-    Tree* c = x->l->r; 
-    
-    b->p = pai;
+    printf("\n\n!-- Entrei na rotação da direita --!\n\n");
+    Tree *y = x->l;
+    Tree *b = y->r;
 
-    if(pai != NULL){
-        if(pai->r == x)
-            pai->r=b;
-        else
-            pai->l=b;
-        
+    if(x->p != NULL){
+        if(x->p->l == x){
+            x->p->l = y;
+        }else{
+            x->p->r = y;
+        }
     }
+    y->p = x->p;
 
-    x->l=c;
-    b->r=x;
-    x->p=b;
-   
-  if(c!=NULL)
-        c->p=x;
-    
-
-    /* atualizando as alturas */
-    x->h = alturaArvore(x);
-    b->h = alturaArvore(b);  
+    x->p = y;
+    y->r = x;
+    x->l = b; 
 }
 
 
@@ -290,7 +309,7 @@ int buscar(Tree* raiz,int n){
 
     if(raiz == NULL) return 0;
 
-    if(raiz == NULL || raiz->v == n)
+    if(raiz->v == n)
         /* achou */
         return 1;
     
