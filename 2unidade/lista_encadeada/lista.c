@@ -44,11 +44,11 @@ int main (void) {
  		tempo = 0;
 
         /* CALCULA A MEDIA */
- 		for(i = 0; i < 10000 ; i++){
+ 		for(i = 0; i < 100000 ; i++){
 
 		 	gettimeofday(&b, NULL);
-            /* achou = buscar(raiz, -1); /* pior caso */
-            achou = buscar(raiz, rand() % k); /* caso medio */
+            achou = buscar(raiz, -1); /* pior caso */
+            /* achou = buscar(raiz, rand() % k); /* caso medio */
 		 	gettimeofday(&a, NULL);
 		 	tempo  += tvtosec(a) - tvtosec(b);
 	 	}
@@ -58,8 +58,8 @@ int main (void) {
 
         /* PRINTA O RESULTADO */
 
-	 	fprintf(stderr, "%d %.20lf\n", n, tempo/10000 );
-	 	printf("%d %.20lf\n", n, tempo/10000 );
+	 	fprintf(stderr, "%d %.20lf\n", n, tempo/50000 );
+	 	printf("%d %.20lf\n", n, tempo/50000 );
 
     }
 

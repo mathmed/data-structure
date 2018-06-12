@@ -61,8 +61,8 @@ int main (void) {
 
 		 	gettimeofday(&b, NULL);
              
-            achou = buscar(raiz, 1); /* pior caso */
-            /* achou = buscar(raiz, rand() % k) /* caso médio */
+            /* achou = buscar(raiz, 1); /* pior caso */
+            achou = buscar(raiz, rand() % k); /* caso médio */
 
 		 	gettimeofday(&a, NULL);
 		 	tempo  += tvtosec(a) - tvtosec(b);
