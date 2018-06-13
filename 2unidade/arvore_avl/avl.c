@@ -63,9 +63,8 @@ int main (void) {
 		 	gettimeofday(&b, NULL);
              
             /* PROCURANDO NO VETOR */
-
             achou = buscar(raiz, (n*2)); /* pior caso */
-            /* achou = buscar(raiz, (rand() % (k+1))); /* caso médio */
+            /* achou = buscar(raiz, (rand() % (n+1))); /* caso médio */
 
 		 	gettimeofday(&a, NULL);
 		 	tempo  += tvtosec(a) - tvtosec(b);
@@ -164,7 +163,7 @@ void verifica(Tree* n, Tree** RaizOriginal){
         
         /* após atualizadas as alturas verifica se há desbalanceamento, se houver chamar função para balancear */
         if (mod(alturaArvore(n->r) - alturaArvore(n->l)) > 1) {
-            printf("\n>> Entrei no balanceamento <<\n\n");
+            /* printf("\n>> Entrei no balanceamento <<\n\n"); */
             balancear(n,RaizOriginal); 
         }
 
@@ -214,7 +213,7 @@ void balancear(Tree* n, Tree** RaizOriginal){
             /* caso 3 */
             if (df == -1){
 
-                printf("\n\n>> Entrei no caso 3 <<\n\n");
+                /* printf("\n\n>> Entrei no caso 3 <<\n\n"); */
 
                 /* fazendo a primeira rotação */
 
@@ -241,7 +240,7 @@ void balancear(Tree* n, Tree** RaizOriginal){
 
             } else {
 
-                printf("\n\n>> Entrei no caso 1 <<\n\n");
+                /* printf("\n\n>> Entrei no caso 1 <<\n\n"); */
 
                 re(n);
 
@@ -264,7 +263,7 @@ void balancear(Tree* n, Tree** RaizOriginal){
 
             if (df <= 0){
                 
-                printf("\n\n>> Entrei no caso 2 <<\n\n");
+                /* printf("\n\n>> Entrei no caso 2 <<\n\n"); */
 
                 rd(n);
                 if (n == *RaizOriginal)
@@ -275,7 +274,7 @@ void balancear(Tree* n, Tree** RaizOriginal){
             /* caso 4 */
             } else {
 
-                printf("\n\n>> Entrei no caso 4 <<\n\n");
+                /* printf("\n\n>> Entrei no caso 4 <<\n\n"); */
 
                 /* fazendo a primeira rotação */
 
@@ -307,7 +306,7 @@ void balancear(Tree* n, Tree** RaizOriginal){
 /* função que faz a rotação na esquerda */
 
 void re(Tree* x){
-    printf("\n\n>> Entrei na rotação da esquerda <<\n\n");
+    /* printf("\n\n>> Entrei na rotação da esquerda <<\n\n"); */
     Tree *y = x->r;
     Tree *b = y->l;
 
@@ -330,7 +329,7 @@ void re(Tree* x){
 /* função que faz a rotação na direita */
 
 void rd(Tree* x){
-    printf("\n\n!-- Entrei na rotação da direita --!\n\n");
+    /* printf("\n\n!-- Entrei na rotação da direita --!\n\n"); */
     Tree *y = x->l;
     Tree *b = y->r;
 

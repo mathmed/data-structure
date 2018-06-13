@@ -34,55 +34,38 @@ double tvtosec(struct timeval t);
 
 /* função principal */
 int main(void){
+
 	srand(time(NULL));
 	Table table;
-    int n = 100000;
-    int valor,i,j,y,k, achou;
+    int valor, i, j, y, k, achou, aleatorio;
     struct timeval a, b;
 	double tempo;
 
-    table.b = malloc(sizeof(Bloco*)*(10000));
+    table.b = malloc(sizeof(Bloco*)*(2));
 	table.n = 0;
-	table.tam = 10000;
+	table.tam = 2;
 
+	for (i = 0; i < table.tam; i++){
+        table.b[i] = NULL;
+    }
 
-
-	for(j = 10000; j <= 100000; j+= 100){
-
-		/* preenchendo a tabela com null */
-		for(i = 0; i < j; i++){
-			table.b[i] = NULL;
-		}
-
-		for(y =0; y < j; y++){
-			adicionar(&table, novo(y));
-		}
-
-		tempo = 0;
-
-		for(k =0; k < 100000; k++){
-
-			gettimeofday(&b, NULL);
-             
-            achou = buscar(&table, rand() % (y+1));
-
-		 	gettimeofday(&a, NULL);
-
-		 	tempo  += tvtosec(a) - tvtosec(b);
-		}
-
-		tremoveTabela(&table);
-
-		
-        /* PRINTA O RESULTADO */
-
-		fprintf(stderr, "%d %.20lf\n", j, tempo/100000 );
-		printf("%d %.20lf\n", j, tempo/100000 );
-
-
+	for(i = 0; i< 30; i++){
+		adicionar(&table, novo(rand() % 100));
 	}
 
+	exibiTabela(&table);
 
+	tremoveTabela(&table);
+
+
+	printf("\n\n\n");
+
+
+	for(i = 0; i< 30; i++){
+		adicionar(&table, novo(rand() % 100));
+	}
+
+	exibiTabela(&table);
 
     return 0;
 }
@@ -109,7 +92,7 @@ void adicionar(Table *table, Bloco *bloco){
 
 	/* verifica se é necessário atualizar o tamanho */
 	if(table->n >= table->tam){
-		printf("att");
+		printf("\n>> Atualizando tamanho <<\n");
 		atualizar(table);
 	}
 
@@ -133,17 +116,24 @@ void tremoveTabela(Table* table){
 	int i;
 	for(i = 0; i< table->tam; i++){
 		tremoveBloco(table->b[i]);
+		table->b[i] = NULL;
 	}
+
+	table->n = 0;
 	
 }
 
 
 void tremoveBloco(Bloco* bloco){
+	Bloco *auxiliar;
 	while (bloco != NULL){
+		auxiliar = bloco->proximo;
 		free(bloco);
-		bloco = bloco->proximo;
+		bloco = auxiliar;
 		
 	}	
+
+
 }
 
 
@@ -220,6 +210,7 @@ void atualizar(Table *table){
 				new.b[posicao] = b;
 		   }
 			vOrg = vOrg->proximo;
+			new.n++;
 	    }
     }
 
@@ -227,6 +218,7 @@ void atualizar(Table *table){
     tremoveTabela(table);
     table->b = new.b;
     table->tam = new.tam;
+	table->n = new.n;
 }
 
 

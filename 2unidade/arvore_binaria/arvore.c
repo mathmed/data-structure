@@ -32,36 +32,41 @@ void tremove(Node* x);
  
  
 int main (void){
-
     Node *node = NULL;
 	srand(time(NULL)); 
 	struct timeval a;
 	struct timeval b;
 	double tempo;
     int achou;
-    int n, k, i;
+    int n, k, i, primeiro, aleatorio;
 
 
     /* CONTROLA O TAMANHO */
 
- 	for(n = 1000; n <= 10000; n += 500){      
-
-        
+ 	for(n = 1000; n <= 10000; n += 500){
  		tempo = 0;
 
-
         /* CALCULA A MEDIA */
- 		for(i = 0; i < 5000 ; i++){
+ 		for(i = 0; i < 10000 ; i++){
             
             /* PREENCHE A ÁRVORE */
 
             for(k = 0; k < n; k++){
-                adicionar(&node, (rand() % (k+1)));
+
+                aleatorio = rand() % (n+1);
+                adicionar(&node, aleatorio);
+
+                /* pegando o primeiro elemento adicionado para o melhor caso */
+
+                if(k == 0){
+                    primeiro = aleatorio;
+                }
             }
 
 		 	gettimeofday(&b, NULL);
 
-            achou = tsearch(node, (n*2)); /* pior caso */
+            achou = tsearch(node, primeiro); /* melhor caso */
+            /* achou = tsearch(node, (n*2)); /* pior caso */
             /* achou = tsearch(node, (rand() % (n+1))); /* caso  médio*/
 		 	gettimeofday(&a, NULL);
 
@@ -75,14 +80,12 @@ int main (void){
 
         /* PRINTA O RESULTADO */
 
-	 	fprintf(stderr, "%d %.20lf\n", n, tempo/5000 );
-	 	printf("%d %.20lf\n", n, tempo/5000 );
-
+	 	fprintf(stderr, "%d %.20lf\n", n, tempo/10000 );
+	 	printf("%d %.20lf\n", n, tempo/10000 );
 
 	}
 
     return 0;
-
 }
 
 
@@ -126,11 +129,9 @@ int tsearch(Node* x, int v){
 Node* newnode(int num){
 
     Node* a = (Node*)malloc(sizeof(Node));
-
     a->v = num;
     a->l = NULL;
     a->r = NULL;
-
     return a;
 
 }
@@ -159,7 +160,6 @@ void tremove(Node* x){
         tremove(x->r);
         free(x);
     }
-
     return;
 
 }

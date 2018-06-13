@@ -31,7 +31,7 @@ int main (void) {
 	struct timeval a;
 	struct timeval b;
 	double tempo;
-    int i, aleatorio, k, n, achou;
+    int i, aleatorio, k, n, achou, primeiro;
 
     /* CONTROLA O TAMANHO */
 
@@ -39,18 +39,24 @@ int main (void) {
  		tempo = 0;
 
         /* CALCULA A MEDIA */
- 		for(i = 0; i < 5000 ; i++){
+ 		for(i = 0; i < 10000 ; i++){
 
             for(k = 0; k < n; k++){
-
                 /* adicionando na lista */
-                adicionar(&raiz, k);
+                aleatorio = rand() % (n+1);
+                adicionar(&raiz, aleatorio);
+
+                /* salvando o ultimo elemento que foi adicionado para fazer o melhor caso (o ultimo elemento adicionado é o primeiro da lista) */
+                if(k == n-1){
+                    primeiro = aleatorio;
+                }
             }
-        
 
 		 	gettimeofday(&b, NULL);
+            
+            achou = buscar(raiz, primeiro); /* melhor caso */
             /* achou = buscar(raiz, (n*2)); /* pior caso */
-            achou = buscar(raiz, (rand() % (k+1))); /* caso medio */
+            /* achou = buscar(raiz, (rand() % (k+1))); /* caso medio */
 		 	gettimeofday(&a, NULL);
 		 	tempo  += tvtosec(a) - tvtosec(b);
 
@@ -59,11 +65,10 @@ int main (void) {
 
 	 	}
 
-
         /* PRINTA O RESULTADO */
 
-	 	fprintf(stderr, "%d %.20lf\n", n, tempo/5000 );
-	 	printf("%d %.20lf\n", n, tempo/5000 );
+	 	fprintf(stderr, "%d %.20lf\n", n, tempo/10000 );
+	 	printf("%d %.20lf\n", n, tempo/10000 );
 
     }
 
