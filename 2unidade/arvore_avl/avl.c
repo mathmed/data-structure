@@ -45,36 +45,40 @@ int main (void) {
 
 /* CONTROLA O TAMANHO */
 
- 	for(n = 10000; n <= 100000; n += 10000){      
-        for(k = 1; k <= n; k++){
-           /* adicionar(&raiz, k, NULL, &raiz); pior caso */
-
-            aleatorio = rand() % k;
-            if(buscar(raiz, aleatorio) != 1)
-                adicionar(&raiz, aleatorio, NULL, &raiz); /* caso médio */
-        }
+ 	for(n = 1000; n <= 10000; n += 1000){      
         
  		tempo = 0;
 
         /* CALCULA A MEDIA */
- 		for(i = 0; i < 1000 ; i++){
+ 		for(i = 0; i < 5000 ; i++){
+
+            /* ADICIONA ELEMENTOS AO VETOR */
+            
+            for(k = 0; k < n; k++){
+                aleatorio = rand() % (n+1);
+                if(buscar(raiz, aleatorio) != 1)
+                    adicionar(&raiz, aleatorio, NULL, &raiz);
+            }
 
 		 	gettimeofday(&b, NULL);
              
-            /* achou = buscar(raiz, 1); /* pior caso */
-            achou = buscar(raiz, rand() % k); /* caso médio */
+            /* PROCURANDO NO VETOR */
+
+            achou = buscar(raiz, (n*2)); /* pior caso */
+            /* achou = buscar(raiz, (rand() % (k+1))); /* caso médio */
 
 		 	gettimeofday(&a, NULL);
 		 	tempo  += tvtosec(a) - tvtosec(b);
+
+            tremove(raiz);
+            raiz = NULL;
 	 	}
 
-        tremove(raiz);
-        raiz = NULL;
 
         /* PRINTA O RESULTADO */
 
-	 	fprintf(stderr, "%d %.20lf\n", n, tempo/1000 );
-	 	printf("%d %.20lf\n", n, tempo/1000 );
+	 	fprintf(stderr, "%d %.20lf\n", n, tempo/5000 );
+	 	printf("%d %.20lf\n", n, tempo/5000 );
 
      }
 

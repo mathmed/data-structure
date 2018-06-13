@@ -44,39 +44,46 @@ int main (void){
 
     /* CONTROLA O TAMANHO */
 
- 	for(n = 10000; n <= 100000; n += 10000){      
-        for(k = 0; k < n; k++){
-            /* adicionar(&node, k+1); /* pior caso */
-            adicionar(&node, rand() % (k+1)); /* caso médio */
-        }
+ 	for(n = 1000; n <= 10000; n += 500){      
+
         
  		tempo = 0;
 
+
         /* CALCULA A MEDIA */
- 		for(i = 0; i < 500000 ; i++){
+ 		for(i = 0; i < 5000 ; i++){
+            
+            /* PREENCHE A ÁRVORE */
+
+            for(k = 0; k < n; k++){
+                adicionar(&node, (rand() % (k+1)));
+            }
 
 		 	gettimeofday(&b, NULL);
 
-            achou = tsearch(node, k+2); /* pior caso */
-            /* achou = tsearch(node, rand() % (k+1)); /* caso  médio*/
+            achou = tsearch(node, (n*2)); /* pior caso */
+            /* achou = tsearch(node, (rand() % (n+1))); /* caso  médio*/
 		 	gettimeofday(&a, NULL);
-		 	tempo  += tvtosec(a) - tvtosec(b);
-	 	}
 
-        tremove(node);
-        node = NULL;
+		 	tempo  += tvtosec(a) - tvtosec(b);
+
+            /* LIBERA A ARVORE */
+            
+            tremove(node);
+            node = NULL;
+	 	}
 
         /* PRINTA O RESULTADO */
 
-	 	fprintf(stderr, "%d %.20lf\n", n, tempo/500000 );
-	 	printf("%d %.20lf\n", n, tempo/500000 );
+	 	fprintf(stderr, "%d %.20lf\n", n, tempo/5000 );
+	 	printf("%d %.20lf\n", n, tempo/5000 );
+
 
 	}
 
     return 0;
 
 }
-
 
 
 void adicionar(Node **n, int v) {

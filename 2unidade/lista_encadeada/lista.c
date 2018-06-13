@@ -35,31 +35,35 @@ int main (void) {
 
     /* CONTROLA O TAMANHO */
 
- 	for(n = 10000; n <= 100000; n += 10000){      
-        for(k = 1; k <= n; k++){
-            /* adicionando na lista */
-            adicionar(&raiz, k);
-        }
-        
+ 	for(n = 1000; n <= 10000; n += 500){      
  		tempo = 0;
 
         /* CALCULA A MEDIA */
- 		for(i = 0; i < 100000 ; i++){
+ 		for(i = 0; i < 5000 ; i++){
+
+            for(k = 0; k < n; k++){
+
+                /* adicionando na lista */
+                adicionar(&raiz, k);
+            }
+        
 
 		 	gettimeofday(&b, NULL);
-            achou = buscar(raiz, -1); /* pior caso */
-            /* achou = buscar(raiz, rand() % k); /* caso medio */
+            /* achou = buscar(raiz, (n*2)); /* pior caso */
+            achou = buscar(raiz, (rand() % (k+1))); /* caso medio */
 		 	gettimeofday(&a, NULL);
 		 	tempo  += tvtosec(a) - tvtosec(b);
+
+            tremove(raiz);
+            raiz = NULL;
+
 	 	}
 
-        tremove(raiz);
-        raiz = NULL;
 
         /* PRINTA O RESULTADO */
 
-	 	fprintf(stderr, "%d %.20lf\n", n, tempo/50000 );
-	 	printf("%d %.20lf\n", n, tempo/50000 );
+	 	fprintf(stderr, "%d %.20lf\n", n, tempo/5000 );
+	 	printf("%d %.20lf\n", n, tempo/5000 );
 
     }
 

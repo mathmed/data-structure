@@ -41,7 +41,7 @@ int main(void){
     struct timeval a, b;
 	double tempo;
 
-    table.b = malloc(sizeof(Bloco *)*(10000));
+    table.b = malloc(sizeof(Bloco*)*(10000));
 	table.n = 0;
 	table.tam = 10000;
 
