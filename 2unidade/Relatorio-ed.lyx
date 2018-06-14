@@ -1,0 +1,1017 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 2
+\align center
+UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE – UFRN 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 2
+\align center
+CENTRO DE ENSINO SUPERIOR DO SERIDO – CERES 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 2
+\align center
+DEPARTAMENTO DE COMPUTAÇÃO E TECNOLOGIA – DCT 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 2
+\align center
+BACHARELADO EM SISTEMAS DE INFORMACAO 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 2
+\align center
+Prof.
+ DSc.
+ JOAO PAULO DE SOUZA MEDEIROS
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 5
+\align center
+
+\series bold
+MATEUS MEDEIROS DE ARAÚJO
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 5
+\align center
+TRABALHO DE IMPLEMENTAÇÃO UNIDADE II
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+\align center
+Caicó – RN
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+\align center
+Junho - 2018
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+Resumo
+\end_layout
+
+\begin_layout Standard
+O presente relatório tem como objetivo apresentar estudos coletados durante
+ a segunda unidade da disciplina de estrutura de dados ministrada pelo professor
+ DSc.
+ João Paulo de Souza Medeiros na Universidade Federal do Rio Grande no Norte.
+ Serão apresentados gráficos e informações acerca de alguns algoritmos de
+ busca em lista encadeada, árvore binária, arvore balanceada e tabela de
+ disperção.
+ Para implementação dos códigos foi utilizado o sistema operacional Linux
+ Mint, a linguagem de programação C, o compilador GCC.
+ A ferramenta GNUPLOT foi utilizada para criação dos gráficos.
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+Abstract
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+SUMÁRIO
+\end_layout
+
+\begin_layout Section
+Introdução aos algoritmos de busca
+\end_layout
+
+\begin_layout Standard
+Um algotitmo de busca em termos gerais é aquele que toma um problema como
+ entrada e retorna uma solução, geralmente após resolver um número possível
+ de soluções.
+ Neste presente trabalho será discutido como se comporta um algoritmo de
+ busca em determinadas estruturas de dados, mais especificamente a lista
+ encadeada, árvore binária, árvore balanceada e tabela de disperção.
+\end_layout
+
+\begin_layout Section
+Estruturas de dados
+\end_layout
+
+\begin_layout Subsection
+Lista encadeada
+\end_layout
+
+\begin_layout Standard
+Uma lista encadeada é uma maneira de representar um conjunto de dados que
+ são adicionados em células, ou seja, o primeiro elemento é adicionado na
+ primeira célula, o segundo elemento na segunda célula e assim por diante.
+ Uma lista encadeada é uma sequência de células; cada célula contém um objeto
+ de algum tipo e o endereço da célula seguinte.
+\end_layout
+
+\begin_layout Standard
+Uma busca realizada em uma lista encadeada tem tempo de execução 
+\begin_inset Formula $O\left(1\right)$
+\end_inset
+
+ em seu melhor caso e 
+\begin_inset Formula $O\left(n\right)$
+\end_inset
+
+ em seu médio e pior caso.
+\end_layout
+
+\begin_layout Standard
+O melhor caso da busca em uma lista encadeada ocorre quando o elemento buscado
+ é encontrado logo na primeira verificação, sendo assim tendo tempo de execução
+ constante 
+\begin_inset Formula $O\left(1\right)$
+\end_inset
+
+.
+ Seu melhor caso pode ser equacionado como
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+T_{b}\left(n\right)=C_{1}
+\]
+
+\end_inset
+
+ onde 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+é a primeira linha executada da função de busca.
+ É possível visualizar o gráfico de tempo de execução na figura 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/lista_melhor.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução do melhor caso na busca em lista encadeada
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Nota-se que embora haja variações o tempo de execução é constante em um
+ intervalo.
+ Para geração do gráfico a lista foi preenchida de forma aleatória e o elemento
+ procurado sempre foi encontrado na primeira verificação.
+\end_layout
+
+\begin_layout Standard
+O pior caso ocorre quando o elemento buscado não está presente na lista,
+ assim tendo tempo de execução linear 
+\begin_inset Formula $O\left(n\right)$
+\end_inset
+
+.
+ O pior caso pode ser equacionado como
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+T_{w}\left(n\right)=C_{1}+C_{2}+C_{3}+T_{w}\left(n-1\right)
+\]
+
+\end_inset
+
+ observa-se que se obtém uma relação de recorrência que tem como caso base
+\begin_inset Formula 
+\[
+T_{w}\left(0\right)=C_{1}
+\]
+
+\end_inset
+
+ então, calculando a pŕoxima relação
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+T_{w}\left(n-1\right)=C_{1}+C_{2}+C_{3}+T_{w}\left(n-2\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+T_{w}\left(n\right)=C_{1}+C_{2}+C_{3}+\left[C_{1}+C_{2}+C_{3}+T_{w}\left(n-2\right)\right]=
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+2\left(C_{1}+C_{2}+C_{3}\right)+T_{w}\left(n-2\right)=
+\]
+
+\end_inset
+
+ substituindo pelo padrão de troca
+\begin_inset Formula 
+\[
+x\left(C_{1}+C_{2}+C_{3}\right)+T_{w}\left(n-x\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+n-x=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+x=n
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+n\left(C_{1}+C_{2}+C_{3}\right)+C_{1}
+\]
+
+\end_inset
+
+É possível visualizar o gráfico de tempo de execução na figura 2.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/lista_pior.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução do pior caso da busca em lista encadeada
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Para geração do gráfico a lista foi preenchida de forma aleatória e o elemento
+ procurado não foi encontrado.
+\end_layout
+
+\begin_layout Standard
+Para o caso médio esperado, a lista foi preenchida de forma aleatório e
+ foi procurado um número aleatório.
+ Na figura 3 é possível visualizar seu tempo de execução.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/lista_medio.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução do caso médio da busca em lista encadeada
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Na figura 4 é possível visualizar a comparação entre o tempo de execução
+ dos três casos.
+\end_layout
+
+\begin_layout Subsection
+Árvore binária
+\end_layout
+
+\begin_layout Standard
+Árvore binária de busca é uma estrutura de dados baseada em nós sendo que
+ todos os valores numéricos à esquerda do nó são inferiores a ele e todos
+ os valores numéricos à direita são maiores do que ele, essencialmente.
+ O objetivo dessa estrutura é permitir que uma busca seja feita em ordem
+ 
+\begin_inset Formula $O\left(log_{2}n\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Uma busca realizada em uma árvore binária tem tempo de execução 
+\begin_inset Formula $O\left(log_{2}n\right)$
+\end_inset
+
+ em seu pior e médico caso, e tem tempo de execução 
+\begin_inset Formula $O\left(1\right)$
+\end_inset
+
+ em seu melhor caso.
+\end_layout
+
+\begin_layout Standard
+O melhor caso da busca em uma árvore binária, assim como quase todas outras
+ estruturas, ocorre quando o elemento buscado é encontrado logo na primeira
+ verificação, portanto sendo de tempo de execução constante 
+\begin_inset Formula $O\left(1\right)$
+\end_inset
+
+.
+ Seu melhor caso pode ser equacionado como
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+T_{b}\left(n\right)=C_{1}+C_{2}+C_{3}
+\]
+
+\end_inset
+
+ É possível visualizar o gráfico de tempo de execução na figura 5
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/arvore_melhor.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução do melhor caso da busca em árvore binária
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Para geração do gráfico a árvore foi preenchida de forma aleatória e o
+ elemento procurado sempre foi encontrado na primeira verificação.
+ 
+\end_layout
+
+\begin_layout Standard
+O pior caso ocorre quando o elemento buscado não está presente na árvore,
+ tornando assim o tempo de execução 
+\begin_inset Formula $O\left(log_{2}n\right)$
+\end_inset
+
+.
+ O pior caso pode ser equacionado como
+\begin_inset Formula 
+\[
+T_{w}\left(n\right)=C_{1}+C_{2}+C_{4,6}+C_{5,7}+T_{w}\left(\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+É possível visualizar o gráfico de tempo de execução na figura 6
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/arvore_pior.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução do pior caso da busca em árvore binária
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Para geração do gráfico a lista foi preenchida de forma aleatória e o elemento
+ procurado não foi encontrado.
+\end_layout
+
+\begin_layout Standard
+Para o caso médio esperado, a árvore foi preenchida de forma aleatório e
+ foi procurado um número aleatório.
+ Na figura 7 é possível visualizar seu tempo de execução.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/arvore_medio.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução do caso médio da busca em árvore binária
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Na figura 7 é possível visualizar a comparação entre o tempo de execução
+ dos três casos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/arvore_comparacao.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução dos três casos da busca em árvore binária
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Árvore balanceada
+\end_layout
+
+\begin_layout Standard
+Árvore balanceada ou árvore AVL funciona de maneira semelhante à árvore
+ binária, entretando, mantendo um balanceamento entre o lado direito e esquerdo
+ de cada nó, garantindo assim que seja efetuado um menor número de verificações.
+ Para manter esse balanceamento geralmente se verifica a cada nova inserção
+ se existe algum lado desbalanceado, se houver, é necessário fazer algumas
+ rotações.
+ O pior e médio caso da busca em árvore balanceada tem tempo de execução
+ 
+\begin_inset Formula $O\left(log_{2}n\right)$
+\end_inset
+
+ e seu melhor caso 
+\begin_inset Formula $O\left(1\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+O melhor caso da busca em uma árvore balanceada ocorre quando o elemento
+ buscado é encontrado logo na primeira verificação.
+ O melhor caso pode ser equacionado como
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+T_{b}\left(n\right)=C_{1}+C_{2}+C_{3}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O pior caso da busca ocorre quando o elemento buscado não é encontrato,
+ pode ser equacionado como
+\begin_inset Formula 
+\[
+T_{w}\left(n\right)=C_{1}+C_{2}+C_{4,6}+C_{3,5}+T_{w}\left(\frac{n}{2}\right)
+\]
+
+\end_inset
+
+ observa-se que se obtém uma relação de recorrência que tem como caso base
+\begin_inset Formula 
+\[
+T\left(1\right)=C_{1}
+\]
+
+\end_inset
+
+ então, calculando a pŕoxima relação
+\begin_inset Formula 
+\[
+T_{w}\left(\frac{n}{2}\right)=C_{1}+C_{2}+C_{4,6}+C_{3,5}+T_{w}\left(\frac{n}{4}\right)
+\]
+
+\end_inset
+
+ substituindo na equação original
+\begin_inset Formula 
+\[
+T_{w}\left(n\right)=C_{1}+C_{2}+C_{4,6}+C_{5,7}+\left[C_{1}+C_{2}+C_{4,6}+C_{3,5}+T_{w}\left(\frac{n}{4}\right)\right]=
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+2\left(C_{1}+C_{2}+C_{4,6}+C_{5,7}\right)+T_{w}\left(\frac{n}{4}\right)
+\]
+
+\end_inset
+
+ substituindo pelo padrão de troca
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+T_{w}\left(n\right)=x\left(C_{1}+C_{2}+C_{4,6}+C_{5,7}\right)+T_{w}\left(\frac{n}{2^{x}}\right)
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\frac{n}{2^{x}}=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+n=2^{x}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+log_{2}n=x
+\]
+
+\end_inset
+
+ substituindo na equação original
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+T_{w}\left(n\right)=log_{2}n\left(C_{1}+C_{2}+C_{4,6}+C_{5,7}\right)+T_{w}\left(\frac{log_{2}n}{log_{2}n}\right)=
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+log_{2}n\left(C_{1}+C_{2}+C_{4,6}+C_{5,7}\right)+C_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+É possível visualizar o gráfico de tempo de execução na figura 8.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/avl_pior.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução do pior caso da busca em árvore balanceada
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Para geração do gráfico a árvore foi preenchida de forma aleatória e o elemento
+ procurado não foi encontrado.
+\end_layout
+
+\begin_layout Standard
+Para o caso médio esperado, a árvore foi preenchida de forma aleatória e
+ foi procurado um número aleatório que poderia está ou não inserido.
+ Na figura 9 é possível visualizar seu tempo de execução.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/avl_medio.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução do caso médio da busca em árvore balanceada
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Na figura 10 é possível visualizar a comparação entre o tempo de execução
+ dos três casos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/avl_comparacao.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução dos casos da busca em árvore balanceada
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Tabela de disperção
+\end_layout
+
+\begin_layout Section
+Comparação entre as estruturas de dados
+\end_layout
+
+\begin_layout Section
+Conclusões
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "1"
+literal "false"
+
+\end_inset
+
+Levitin, A..
+ Introduction to the Design and Analysis of Algorithms.
+ 2.
+ Addison Wesley.
+ 2006
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "2"
+literal "false"
+
+\end_inset
+
+Cormen, T.H.; Leiserson, C.E.; Rivest, R.L.; Stein, C..
+ Introduction to Algorithms.
+ 3.
+ The MIT Press.
+ 2009
+\end_layout
+
+\end_body
+\end_document

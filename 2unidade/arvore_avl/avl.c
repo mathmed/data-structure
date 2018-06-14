@@ -83,16 +83,9 @@ int main (void) {
 
     /* testes manuais
 
-    adicionar(&raiz, 3, NULL, &raiz);
-    adicionar(&raiz, 29, NULL, &raiz);
-    adicionar(&raiz, 46, NULL, &raiz);
     adicionar(&raiz, 35, NULL, &raiz);
     adicionar(&raiz, 33, NULL, &raiz);
     adicionar(&raiz, 37, NULL, &raiz);
-    adicionar(&raiz, 28, NULL, &raiz);
-    adicionar(&raiz, 10, NULL, &raiz);
-    adicionar(&raiz, 15, NULL, &raiz);
-    adicionar(&raiz, 24, NULL, &raiz);
     
     tprint(raiz);
     
