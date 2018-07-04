@@ -12,6 +12,8 @@ typedef struct bloco{
       struct bloco *proximo;
 }Bloco;
 
+/* struct que simula o vetor */
+
 typedef struct table{
       unsigned int tam;
       unsigned int n;
@@ -40,11 +42,11 @@ int main(void){
     struct timeval a, b;
 	double tempo;
 
+	/* alocando a memória necessária para realizar os testes */
+
     table.b = malloc(sizeof(Bloco*)*(10000));
 	table.n = 0;
 	table.tam = 10000;
-
-
 
 	for(j = 1000; j <= 10000; j+= 10){
 
@@ -57,6 +59,7 @@ int main(void){
 				table.b[i] = NULL;
 			}
 
+			/* adicionando elementos */
 			for(y =0; y < j; y++){
 				aleatorio = rand() % (j+1);
 				adicionar(&table, novo(aleatorio));
@@ -101,7 +104,7 @@ void adicionar(Table *table, Bloco *bloco){
 
 	/* verifica se é necessário atualizar o tamanho */
 	if(table->n >= table->tam){
-		printf("\n>> Atualizando tamanho <<\n");
+		printf("\n>> Dobrando tamanho <<\n");
 		atualizar(table);
 	}
 
@@ -184,13 +187,13 @@ int buscar(Table *table, int valor){
 void atualizar(Table *table){
 	int i, tam = table->tam;
 
-	/* criando uma tabela auxiliar com o dobro do tamanho */
+	/* criando uma tabela estática auxiliar com o dobro do tamanho */
 
 	Table new;
 	new.tam = (tam*2);
 	new.b = malloc(sizeof(Bloco *) * new.tam);
 
-	/* prenche os valores table aux como NULL */
+	/* prenche os valores da tabela auxiliar como NULL */
 
 	for (i = 0; i < new.tam; i++){
         new.b[i] = NULL;

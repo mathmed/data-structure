@@ -7,7 +7,6 @@
 #include <unistd.h>
 
 typedef struct node {
-    
     int v;
     struct node *l;
     struct node *r;
@@ -22,14 +21,6 @@ double tvtosec(struct timeval t);
 void tprint(Node* x);
 void tremove(Node* x);
 
-
-/* main de calcular o tempo */
-
-/* 
-    "pior caso": preenchendo de forma crescente e procurando por n (ultimo valor)
-    "caso medio": preenchendo de forma aleatoria e procurando um numero aleatorio
-*/
- 
  
 int main (void){
     Node *node = NULL;
@@ -47,6 +38,7 @@ int main (void){
  		tempo = 0;
 
         /* CALCULA A MEDIA */
+        
  		for(i = 0; i < 10000 ; i++){
             
             /* PREENCHE A ÁRVORE */

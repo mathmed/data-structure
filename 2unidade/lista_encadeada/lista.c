@@ -46,7 +46,7 @@ int main (void) {
                 aleatorio = rand() % (n+1);
                 adicionar(&raiz, aleatorio);
 
-                /* salvando o ultimo elemento que foi adicionado para fazer o melhor caso (o ultimo elemento adicionado é o primeiro da lista) */
+                /* salvando o ultimo elemento que foi adicionado para fazer o melhor caso (o ultimo elemento adicionado é a primeira posição da lista primeiro da lista) */
                 if(k == n-1){
                     primeiro = aleatorio;
                 }
@@ -71,7 +71,6 @@ int main (void) {
 	 	printf("%d %.20lf\n", n, tempo/10000 );
 
     }
-
     
 }
 
@@ -96,9 +95,6 @@ void adicionar(Lista **raiz, int num){
 
     no->prox = (*raiz);
     *raiz = no;
-
-        
-
 }
 
 

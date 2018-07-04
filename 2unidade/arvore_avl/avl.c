@@ -41,16 +41,14 @@ int main (void) {
 	double tempo;
     int i, aleatorio, k, n, achou;
 
-
-
-/* CONTROLA O TAMANHO */
+    /* CONTROLA O TAMANHO */
 
  	for(n = 1000; n <= 10000; n += 1000){      
         
  		tempo = 0;
 
         /* CALCULA A MEDIA */
- 		for(i = 0; i < 5000 ; i++){
+ 		for(i = 0; i < 100 ; i++){
 
             /* ADICIONA ELEMENTOS AO VETOR */
             
@@ -76,8 +74,8 @@ int main (void) {
 
         /* PRINTA O RESULTADO */
 
-	 	fprintf(stderr, "%d %.20lf\n", n, tempo/5000 );
-	 	printf("%d %.20lf\n", n, tempo/5000 );
+	 	fprintf(stderr, "%d %.20lf\n", n, tempo/100 );
+	 	printf("%d %.20lf\n", n, tempo/100 );
 
      }
 
@@ -139,14 +137,13 @@ Tree* newnode(int num){
 void tprint( Tree* x){
     if(x != NULL){
         tprint(x->l);
-        printf("Endereço: %p Valor: %d Esquerda: %p Direita: %p Pai: %p  altura: %d\n", x , x->v, x->l, x->r, x->p, x->h);
+        printf("Endereço: %p Valor: %d Esquerda: %p Direita: %p Pai: %p \n", x , x->v, x->l, x->r, x->p);
         tprint(x->r);
     }
 }
 
 /* função para verificar se há desbalanceamento e fazer update da altura dos nós */
 void verifica(Tree* n, Tree** RaizOriginal){
-
     /* laço para verificar desbalanceamentos */
    
     while (n != NULL){
@@ -166,14 +163,13 @@ void verifica(Tree* n, Tree** RaizOriginal){
 }
 
 /* função para retornar o módulo de um número */
-
 int mod(int i){
 
     return i > 0 ? i : -i;
 
 }
 
-/* função recursiva para comparar qual o lado mais pesado */
+/* função recursiva para verificar qual o lado mais pesado */
 
 unsigned int alturaArvore(Tree *a){
 	if (a == NULL) return 0;
@@ -214,9 +210,7 @@ void balancear(Tree* n, Tree** RaizOriginal){
 
                 /* atualizando a altura apos a primeira rotação */
 
-                int aux = n->r->h;
-                n->r->h = n->r->r->h;
-                n->r->r->h = aux;
+                n->r->h = alturaArvore(n->r);
                 
                 /* fazendo a segunda rotação */
 
@@ -225,7 +219,7 @@ void balancear(Tree* n, Tree** RaizOriginal){
                 if (n == *RaizOriginal)
                     *RaizOriginal = n->p;
 
-                /* atualizando a altura */
+                /* atualizando as alturas */
 
                 n->h =( alturaArvore(n));
             
@@ -275,9 +269,7 @@ void balancear(Tree* n, Tree** RaizOriginal){
                 
                 /* atualizando a altura apos a primeira rotação */
 
-                int aux = n->l->h;
-                n->l->h = n->l->l->h;
-                n->l->l->h = aux;
+                n->l->h = alturaArvore(n->l);
 
                 /* fazendo a segunda rotação */
 
@@ -286,7 +278,7 @@ void balancear(Tree* n, Tree** RaizOriginal){
                 if (n == *RaizOriginal)
                     *RaizOriginal = n->p;
 
-                /* atualizando a altura */
+                /* atualizando as alturas */
 
                 n->h =( alturaArvore(n));
          
@@ -375,6 +367,5 @@ void tremove(Tree* x){
         tremove(x->r);
         free(x);
     }
-
     return;
 }

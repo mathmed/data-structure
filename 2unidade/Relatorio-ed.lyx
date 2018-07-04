@@ -167,8 +167,8 @@ Resumo
 
 \begin_layout Standard
 O presente relatório tem como objetivo apresentar estudos coletados durante
- a segunda unidade da disciplina de estrutura de dados ministrada pelo professor
- DSc.
+ a segunda unidade da disciplina de estruturas de dados ministrada pelo
+ professor DSc.
  João Paulo de Souza Medeiros na Universidade Federal do Rio Grande no Norte.
  Serão apresentados gráficos e informações acerca de alguns algoritmos de
  busca em lista encadeada, árvore binária, arvore balanceada e tabela de
@@ -183,6 +183,18 @@ O presente relatório tem como objetivo apresentar estudos coletados durante
 
 \size larger
 Abstract
+\end_layout
+
+\begin_layout Standard
+This report presents a data structures unit taught by DSc for a decade.
+ João Paulo de Souza Medeiros at the Federal University of Rio Grande do
+ Norte.
+ Graphs and information about some search algorithms will be presented in
+ linked list, binary tree, balanced tree and dispersion table.
+ Implementation of the codes was used the Linux Mint operating system, a
+ C programming language, the GCC compiler.
+ The GNUPLOT tool was used to create the graphics.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -203,6 +215,77 @@ Abstract
 SUMÁRIO
 \end_layout
 
+\begin_layout Description
+1 Introdução aos algoritmos de busca ............................................
+ 4
+\end_layout
+
+\begin_layout Description
+2 Busca em estruturas de dados......................................................
+ 4
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+2.1 Busca em lista encadeada ................................................
+ 4
+\end_layout
+
+\begin_layout Description
+2.2 Busca em árvore binária ..................................................
+ 7
+\end_layout
+
+\begin_layout Description
+2.3 Busca em árvore balanceada ............................................
+ 9
+\end_layout
+
+\begin_layout Description
+2.4 Busca em tabela de disperção ........................................
+ 12
+\end_layout
+
+\end_deeper
+\begin_layout Description
+3 Comparação entre as bucas em estruturas de dados ..................
+ 13
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+3.1 Ordem 1 .........................................................................
+ 13
+\end_layout
+
+\begin_layout Description
+3.2 Ordem 2 .........................................................................
+ 14
+\end_layout
+
+\begin_layout Description
+3.3 Ordem 3 .........................................................................
+ 15
+\end_layout
+
+\begin_layout Description
+3.4 Ordem 4 .........................................................................
+ 16
+\end_layout
+
+\begin_layout Description
+3.5 Ordem 5 .........................................................................
+ 17
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Introdução aos algoritmos de busca
 \end_layout
@@ -217,11 +300,11 @@ Um algotitmo de busca em termos gerais é aquele que toma um problema como
 \end_layout
 
 \begin_layout Section
-Estruturas de dados
+Busca em estruturas de dados
 \end_layout
 
 \begin_layout Subsection
-Lista encadeada
+Busca em lista encadeada
 \end_layout
 
 \begin_layout Standard
@@ -389,7 +472,7 @@ x=n
 
 \end_inset
 
-
+ então,
 \begin_inset Formula 
 \[
 n\left(C_{1}+C_{2}+C_{3}\right)+C_{1}
@@ -437,7 +520,7 @@ Para geração do gráfico a lista foi preenchida de forma aleatória e o elemen
 \end_layout
 
 \begin_layout Standard
-Para o caso médio esperado, a lista foi preenchida de forma aleatório e
+Para o caso médio esperado, a lista foi preenchida de forma aleatória e
  foi procurado um número aleatório.
  Na figura 3 é possível visualizar seu tempo de execução.
 \end_layout
@@ -478,8 +561,43 @@ Tempo de execução do caso médio da busca em lista encadeada
  dos três casos.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/lista_comparacao.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução do caso médio da busca em lista encadeada
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
-Árvore binária
+Busca em árvore binária
 \end_layout
 
 \begin_layout Standard
@@ -496,10 +614,14 @@ Tempo de execução do caso médio da busca em lista encadeada
 
 \begin_layout Standard
 Uma busca realizada em uma árvore binária tem tempo de execução 
+\begin_inset Formula $O\left(n\right)$
+\end_inset
+
+ em seu pior caso, 
 \begin_inset Formula $O\left(log_{2}n\right)$
 \end_inset
 
- em seu pior e médico caso, e tem tempo de execução 
+ no médico caso, e tem tempo de execução 
 \begin_inset Formula $O\left(1\right)$
 \end_inset
 
@@ -566,25 +688,15 @@ Tempo de execução do melhor caso da busca em árvore binária
 \end_layout
 
 \begin_layout Standard
-O pior caso ocorre quando o elemento buscado não está presente na árvore,
- tornando assim o tempo de execução 
-\begin_inset Formula $O\left(log_{2}n\right)$
+O pior caso ocorre quando árvore é preenchida em ordem crescente ou decrescente
+ tornando-a semelhante à uma lista encadeada, já que todos elementos estarão
+ apenas de um lado.
+ Neste caso, seu tempo de execução é linear 
+\begin_inset Formula $O\left(n\right)$
 \end_inset
 
 .
- O pior caso pode ser equacionado como
-\begin_inset Formula 
-\[
-T_{w}\left(n\right)=C_{1}+C_{2}+C_{4,6}+C_{5,7}+T_{w}\left(\right)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-É possível visualizar o gráfico de tempo de execução na figura 6
+ É possível visualizar o gráfico de tempo de execução na figura 6
 \end_layout
 
 \begin_layout Standard
@@ -619,12 +731,12 @@ Tempo de execução do pior caso da busca em árvore binária
 
 \end_inset
 
- Para geração do gráfico a lista foi preenchida de forma aleatória e o elemento
+ Para geração do gráfico a lista foi preenchida em ordem crescente e o elemento
  procurado não foi encontrado.
 \end_layout
 
 \begin_layout Standard
-Para o caso médio esperado, a árvore foi preenchida de forma aleatório e
+Para o caso médio esperado, a árvore foi preenchida de forma aleatória e
  foi procurado um número aleatório.
  Na figura 7 é possível visualizar seu tempo de execução.
 \end_layout
@@ -665,7 +777,7 @@ Tempo de execução do caso médio da busca em árvore binária
 \end_layout
 
 \begin_layout Standard
-Na figura 7 é possível visualizar a comparação entre o tempo de execução
+Na figura 8 é possível visualizar a comparação entre o tempo de execução
  dos três casos.
 \end_layout
 
@@ -714,7 +826,7 @@ Tempo de execução dos três casos da busca em árvore binária
  de cada nó, garantindo assim que seja efetuado um menor número de verificações.
  Para manter esse balanceamento geralmente se verifica a cada nova inserção
  se existe algum lado desbalanceado, se houver, é necessário fazer algumas
- rotações.
+ rotações para torna-la balanceada novamente.
  O pior e médio caso da busca em árvore balanceada tem tempo de execução
  
 \begin_inset Formula $O\left(log_{2}n\right)$
@@ -824,7 +936,7 @@ log_{2}n=x
 
 \end_inset
 
- substituindo na equação original
+ substituindo na equação original se obtém
 \end_layout
 
 \begin_layout Standard
@@ -835,7 +947,7 @@ T_{w}\left(n\right)=log_{2}n\left(C_{1}+C_{2}+C_{4,6}+C_{5,7}\right)+T_{w}\left(
 
 \end_inset
 
-
+ então
 \begin_inset Formula 
 \[
 log_{2}n\left(C_{1}+C_{2}+C_{4,6}+C_{5,7}\right)+C_{1}
@@ -847,7 +959,7 @@ log_{2}n\left(C_{1}+C_{2}+C_{4,6}+C_{5,7}\right)+C_{1}
 \end_layout
 
 \begin_layout Standard
-É possível visualizar o gráfico de tempo de execução na figura 8.
+É possível visualizar o gráfico de tempo de execução na figura 9.
 \end_layout
 
 \begin_layout Standard
@@ -888,8 +1000,8 @@ Para geração do gráfico a árvore foi preenchida de forma aleatória e o elem
 
 \begin_layout Standard
 Para o caso médio esperado, a árvore foi preenchida de forma aleatória e
- foi procurado um número aleatório que poderia está ou não inserido.
- Na figura 9 é possível visualizar seu tempo de execução.
+ foi procurado um número aleatório.
+ Na figura 10 é possível visualizar seu tempo de execução.
  
 \end_layout
 
@@ -925,8 +1037,8 @@ Tempo de execução do caso médio da busca em árvore balanceada
 
 \end_inset
 
- Na figura 10 é possível visualizar a comparação entre o tempo de execução
- dos três casos.
+ Na figura 11 é possível visualizar a comparação entre o tempo de execução
+ dos dois casos.
 \end_layout
 
 \begin_layout Standard
@@ -965,15 +1077,382 @@ Tempo de execução dos casos da busca em árvore balanceada
 \end_layout
 
 \begin_layout Subsection
-Tabela de disperção
+Busca em tabela de disperção
+\end_layout
+
+\begin_layout Standard
+Tabela de disperção, também conhecida como tabela hash ou tabela de espalhamento
+, é uma estrutura de dados que funciona associando chaves à valores.
+ O principal objetivo dessa estrutura de dados é fazer com que a partir
+ de uma chave seja possível fazer uma rápida busca e encontrar o elemento
+ desejado.
+ A tabela de disperção tem tempo de execução 
+\begin_inset Formula $O\left(1\right)$
+\end_inset
+
+ em seu melhor e médio caso e, pode chegar a ter tempo de execução até 
+\begin_inset Formula $O\left(n\right)$
+\end_inset
+
+ em seu pior caso.
+\end_layout
+
+\begin_layout Standard
+É possível equacionar o tempo de execução esperado de uma tabela de disperção
+ como
+\begin_inset Formula 
+\[
+T_{a}\left(n\right)=\frac{1}{n}+\left(m-1\right)\left(\frac{1}{m}\right)=
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{1}{n}n+\left(\frac{n-1}{m}\right)=
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+1+1-\frac{1}{n}
+\]
+
+\end_inset
+
+ O gráfico de tempo de execução médio da tabela de disperção pode ser visto
+ na figura 12.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/graficos individuais/tabela.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução médio de busca em uma tabela hash
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Comparação entre as estruturas de dados
+Comparação entre as buscas em estruturas de dados
 \end_layout
 
-\begin_layout Section
-Conclusões
+\begin_layout Standard
+Todas as estruturas utilizadas para a análise foram testadas com uma quantidade
+ de elementos inseridos variando entre 1000 e 10000.
+ Essa sessão tratará de comparar as estruturas entre elas afim de verificar
+ a diferença entre os tempos de execução, para isso, as comparações serão
+ separadas em algumas ordens, que serão: ordem 1, onde serão comparados
+ todas as estruturas em seu pior caso (se tiver); ordem 2, onde serão comparados
+ todos os casos médios; ordem 3, onde serão comparados os casos da árvore
+ binária e árvore balanceada especificamente; caso 4, onde serão comparados
+ todos os casos de todas as estruturas; e por fim, o caso 5, onde serão
+ mostrados todos os casos de todas estruturas exceto a lista encadeada
+\end_layout
+
+\begin_layout Subsection
+Ordem 1
+\end_layout
+
+\begin_layout Standard
+Aqui serão comparadas todas estruturas em seu pior caso.
+ É possível visualizar os tempos de execução na figura 13.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/comparacoes entre/todos_pior.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução das estruturas em seu pior caso
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+A partir do gráfico é possível concluir que o tempo de execução de uma lista
+ encadeada em seu pior caso (linear) é muito superior às demais estruturas
+ no mesmo caso.
+\end_layout
+
+\begin_layout Subsection
+Ordem 2
+\end_layout
+
+\begin_layout Standard
+Aqui serão comparadas todas estruturas em seu caso médio.
+ É possível visualizar os tempos de execução na figura 14.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/comparacoes entre/todos_medio.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução das estruturas em seu caso médio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Assim como foi visto na ordem 14, o tempo de execução da lista encadeada
+ em seu caso médio é muito superior às demais estruturas no mesmo caso.
+\end_layout
+
+\begin_layout Subsection
+Ordem 3
+\end_layout
+
+\begin_layout Standard
+Aqui serão comparadas os casos da árvore balanceada e binária mais especificamen
+te.
+ Na figura 15 é possível visualizar o tempo de execução da árvore balanceada
+ e binária em seus piores casos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/comparacoes entre/arvore_avl_pior.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução das árvore balanceada e binária em seu pior caso
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ A partir da figura é possível concluir que o tempo de execução da árvore
+ balanceada em seu pior caso é inferior à árvore binária no mesmo caso.
+\end_layout
+
+\begin_layout Standard
+Na figura 16 é mostrado o tempo de execução das árvores balanceada e binária
+ em seus casos médios.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/comparacoes entre/arvore_avl_medio.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução das árvore balanceada e binária em seu caso médio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Nota-se que, assim como no pior caso de ambas, no caso médio o tempo de
+ execução da árvore balanceada segue sendo inferior à árvore binária.
+\end_layout
+
+\begin_layout Subsection
+Ordem 4
+\end_layout
+
+\begin_layout Standard
+Nesta ordem serão apresentadas todos os casos de todas as estruturas.
+ Na figura 17 é possível visualizar os tempos de execução
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/comparacoes entre/todos.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução de todos os casos de todas estruturas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Como já mostrado anteriormente neste trabalho e reafirmado na figura 17,
+ o tempo de execução da busca em uma lista encadeada tanto no pior quanto
+ no médio caso é superior às demais estruturas, causando até mesmo uma dificulda
+de para verificar a diferença no tempo de execução das demais.
+ Por conta disso, na ordem 5 será excluida a lista encadeada para melhor
+ visualização.
+ 
+\end_layout
+
+\begin_layout Subsection
+Ordem 5
+\end_layout
+
+\begin_layout Standard
+Nesta ordem será comparado o tempo de execução entre os casos da árvore
+ binária, balanceada e tabela hash.
+ O gráfico pode ser visto na figura 18.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/comparacoes entre/todos_menos_lista.png
+	lyxscale 10
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tempo de execução de todos os casos de todas estruturas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Analisando o gráfico da figura 18 verifica-se que a busca em uma tabela
+ hash contém o menor tempo de execução dentre as demais estruturas.
+ A busca em uma árvore balanceada, em ambos os casos, tem tempo de execução
+ superior à tabela hash mas inferior à busca em uma árvore binária, que
+ por sua vez contém o maior tempo de execução dentre as demais, em ambos
+ os casos.
 \end_layout
 
 \begin_layout Standard
@@ -991,7 +1470,7 @@ literal "false"
 
 \end_inset
 
-Levitin, A..
+LEVITIN, A..
  Introduction to the Design and Analysis of Algorithms.
  2.
  Addison Wesley.
@@ -1006,11 +1485,55 @@ literal "false"
 
 \end_inset
 
-Cormen, T.H.; Leiserson, C.E.; Rivest, R.L.; Stein, C..
+CORMEM, T.H.; Leiserson, C.E.; Rivest, R.L.; Stein, C..
  Introduction to Algorithms.
  3.
  The MIT Press.
  2009
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "3"
+key "3"
+literal "false"
+
+\end_inset
+
+DROZDEK, Adam.
+ Estrutura de Dados e Algoritmos em C++.
+ CENGAGE Learning, 2002
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "4"
+key "4"
+literal "false"
+
+\end_inset
+
+CELES, Waldemar; CERQUEIRA, Renato; RANGEL, José Lucas.
+ Introdução a Estruturas de Dados: com técnicas de programação em C.
+ 7a ed.
+ Elsevier 2004.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "5"
+key "5"
+literal "false"
+
+\end_inset
+
+ASCENCIO, Ana Fernanda G.; ARAÚJO, Graziela S.
+ Estruturas de Dados: Algoritmos, análise da complexidade e implementações
+ em JAVA e C/C++.
+ São Paulo: Pearson, 2010.
 \end_layout
 
 \end_body
